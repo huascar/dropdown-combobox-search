@@ -8,13 +8,17 @@ function DropDownInput({
   setSkipPg,
   setTakePg,
   skipPg,
-  takePg
+  takePg,
+  filterName,
+  setFilterName
 }) {
   return (
     <input
       type="text"
       className="w-64 rounded-l-lg"
+      value={filterName}
       onChange={(e) => {
+        setFilterName(e.target.value)
         if (e.target.value) {
           setIsOpen(true)
           fetchingData({

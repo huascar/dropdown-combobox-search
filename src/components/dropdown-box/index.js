@@ -14,6 +14,7 @@ function DropdownBox() {
   const [isContact, setIsContact] = useState(true)
   const [isCity, setIsCity] = useState(true)
   const [isCountry, setIsCountry] = useState(true)
+  const [filterName, setFilterName] = useState('')
   function customerList() {
     if (!isOpen) {
       setIsOpen(true)
@@ -39,11 +40,49 @@ function DropdownBox() {
             setTakePg={setTakePg}
             skipPg={skipPg}
             takePg={takePg}
+            filterName={filterName}
+            setFilterName={setFilterName}
           />
         </div>
         <div>
           <DropdownButton isOpen={isOpen} customerList={customerList} />
         </div>
+      </div>
+      <div>
+        {isOpen && (
+          <div className="flex justify-between">
+            <div></div>
+            <div>
+              <button
+                className="m-1 bg-blue-500 py-1 px-3 text-white rounded-md"
+                onClick={() => {
+                  setIsOpen(false)
+                  setCustomers([])
+                }}
+              >
+                <div className="flex">
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      />
+                    </svg>
+                  </div>
+                  <div> Clean</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       <div>
         {isOpen && (
@@ -67,7 +106,8 @@ function DropdownBox() {
                   <input
                     type="checkbox"
                     className="rounded-sm"
-                    onClick={(e) => setIsEmail(e.target.checked)}
+                    onChange={(e) => setIsEmail(e.target.checked)}
+                    checked={isEmail}
                   />{' '}
                   Email
                 </label>
@@ -77,7 +117,8 @@ function DropdownBox() {
                   <input
                     type="checkbox"
                     className="rounded-sm"
-                    onClick={(e) => setIsContact(e.target.checked)}
+                    onChange={(e) => setIsContact(e.target.checked)}
+                    checked={isContact}
                   />{' '}
                   Contact
                 </label>
@@ -87,7 +128,8 @@ function DropdownBox() {
                   <input
                     type="checkbox"
                     className="rounded-sm"
-                    onClick={(e) => setIsCity(e.target.checked)}
+                    onChange={(e) => setIsCity(e.target.checked)}
+                    checked={isCity}
                   />{' '}
                   City
                 </label>
@@ -97,7 +139,8 @@ function DropdownBox() {
                   <input
                     type="checkbox"
                     className="rounded-sm"
-                    onClick={(e) => setIsCountry(e.target.checked)}
+                    onChange={(e) => setIsCountry(e.target.checked)}
+                    checked={isCountry}
                   />{' '}
                   Country
                 </label>
