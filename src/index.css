@@ -19,5 +19,5 @@ input[type='radio'],
 select,
 select[multiple],
 textarea {
-  @apply rounded-md border-white border shadow-md bg-white;
+  @apply border-white rounded-l-lg border-0 shadow-md bg-white;
 }
