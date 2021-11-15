@@ -1,12 +1,23 @@
 import React from 'react'
 
-function DropdownButton({isOpen, customerList}) {
+function DropdownButton({
+  isOpen,
+  customerList,
+  setCustomers,
+  setFilters,
+  setFilterName
+}) {
   return (
     <button
       className={`p-2 ${
         isOpen ? 'bg-green-500' : 'bg-gray-400'
       } text-white rounded-r-lg shadow-md`}
-      onClick={customerList}
+      onClick={() => {
+        customerList()
+        setCustomers([])
+        setFilters([])
+        setFilterName('')
+      }}
     >
       {!isOpen ? (
         <svg

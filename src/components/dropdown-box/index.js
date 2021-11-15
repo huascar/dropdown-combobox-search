@@ -15,6 +15,7 @@ function DropdownBox() {
   const [isCity, setIsCity] = useState(true)
   const [isCountry, setIsCountry] = useState(true)
   const [filterName, setFilterName] = useState('')
+
   function customerList() {
     if (!isOpen) {
       setIsOpen(true)
@@ -45,7 +46,13 @@ function DropdownBox() {
           />
         </div>
         <div>
-          <DropdownButton isOpen={isOpen} customerList={customerList} />
+          <DropdownButton
+            isOpen={isOpen}
+            customerList={customerList}
+            setCustomers={setCustomers}
+            setFilters={setFilters}
+            setFilterName={setFilterName}
+          />
         </div>
       </div>
       <div>
