@@ -1,7 +1,4 @@
-const ENDPOINT_URL =
-  process.env.NODE_ENV === 'production'
-    ? `${process.env.REACT_APP_HEROKU_CORS_ANYWHERE}${process.env.REACT_APP_ENDPOINT}`
-    : '/'
+const ENDPOINT_URL = `${process.env.REACT_APP_HEROKU_CORS_ANYWHERE}${process.env.REACT_APP_ENDPOINT}`
 
 let headers = {
   Accept: 'application/json',
@@ -21,7 +18,7 @@ async function fetchingData({skip, take, filters}) {
     group: [],
     all: false
   })
-
+  console.log(headers)
   try {
     const response = await fetch(ENDPOINT_URL, {headers})
 

@@ -1,17 +1,19 @@
+/* eslint-disable no-unused-vars */
 import React, {useState} from 'react'
 import fetchingData from '../../utils/fetching-data'
 import DetailCustomer from './detail-customer'
 import DropdownButton from './dropdown-button'
-
+import DropDownInput from './dropdown-input'
 function DropdownBox() {
   const [customers, setCustomers] = useState()
   const [isOpen, setIsOpen] = useState(false)
   const [filters, setFilters] = useState([])
   const [skipPg, setSkipPg] = useState(0)
-  const [takePg, setTakePg] = useState(10)
-  // eslint-disable-next-line no-unused-vars
-  const [queryParams, setQueryParams] = useState()
-
+  const [takePg, setTakePg] = useState(5)
+  const [isEmail, setIsEmail] = useState(true)
+  const [isContact, setIsContact] = useState(true)
+  const [isCity, setIsCity] = useState(true)
+  const [isCountry, setIsCountry] = useState(true)
   function customerList() {
     if (!isOpen) {
       setIsOpen(true)
@@ -27,41 +29,96 @@ function DropdownBox() {
   return (
     <div>
       <div className="font-bold text-xl p-1 text-center">Dropdown ComboBox</div>
-      <div className="flex mb-5 justify-center">
+      <div className="flex mb-3 justify-center bg-gray-100">
         <div>
-          <input
-            type="text"
-            className="w-64 rounded-l-lg"
-            onChange={(e) => {
-              e.preventDefault()
-              if (e.target.value) {
-                setFilters((prevState) => [
-                  ...prevState,
-                  {
-                    field: 'reference_name',
-                    operator: 'contains',
-                    value: e.target.value
-                  }
-                ])
-                setIsOpen(true)
-                fetchingData({skip: skipPg, take: takePg, filters})
-                  .then((data) => setCustomers(data.results))
-                  .catch((e) => console.log(e))
-                setSkipPg(0)
-                setTakePg(10)
-              }
-            }}
+          <DropDownInput
+            setIsOpen={setIsOpen}
+            setCustomers={setCustomers}
+            setFilters={setFilters}
+            setSkipPg={setSkipPg}
+            setTakePg={setTakePg}
+            skipPg={skipPg}
+            takePg={takePg}
           />
         </div>
         <div>
           <DropdownButton isOpen={isOpen} customerList={customerList} />
         </div>
       </div>
+      <div>
+        {isOpen && (
+          <div className="bg-gray-200 rounded-md w-auto mb-3 cursor-pointer">
+            <div className="flex justify-center">
+              <div className="p-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
+                </svg>
+              </div>
+              <div className="pr-2 py-2 text-md">Attributes</div>
+            </div>
+            <div className="flex p-2">
+              <div className="m-1">
+                <label>
+                  <input
+                    type="checkbox"
+                    className="rounded-sm"
+                    onClick={(e) => setIsEmail(e.target.checked)}
+                  />{' '}
+                  Email
+                </label>
+              </div>
+              <div className="m-1">
+                <label>
+                  <input
+                    type="checkbox"
+                    className="rounded-sm"
+                    onClick={(e) => setIsContact(e.target.checked)}
+                  />{' '}
+                  Contact
+                </label>
+              </div>
+              <div className="m-1">
+                <label>
+                  <input
+                    type="checkbox"
+                    className="rounded-sm"
+                    onClick={(e) => setIsCity(e.target.checked)}
+                  />{' '}
+                  City
+                </label>
+              </div>
+              <div className="m-1">
+                <label>
+                  <input
+                    type="checkbox"
+                    className="rounded-sm"
+                    onClick={(e) => setIsCountry(e.target.checked)}
+                  />{' '}
+                  Country
+                </label>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
       {isOpen &&
         customers &&
         customers.length > 0 &&
         customers.map((client) => (
-          <DetailCustomer key={client.id} client={client} />
+          <DetailCustomer
+            key={client.id}
+            client={client}
+            isEmail={isEmail}
+            isContact={isContact}
+            isCity={isCity}
+            isCountry={isCountry}
+          />
         ))}
     </div>
   )
