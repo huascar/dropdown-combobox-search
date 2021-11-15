@@ -3,10 +3,15 @@ import React, {useEffect} from 'react'
 async function fetchData() {
   try {
     const response = await fetch(
-      `${process.env.REACT_APP_ENDPOINT}?simple=true`,
+      `${process.env.REACT_APP_HEROKU_CORS_ANYWHERE}${process.env.REACT_APP_ENDPOINT}?simple=true`,
       {
-        mode: 'cors',
+        // mode: 'no-cors',
+        // credentials: 'include',
+        method: 'GET',
         headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
           APIKEY: process.env.REACT_APP_APIKEY,
           'Data-Operations': JSON.stringify({
             filter: {
