@@ -21,3 +21,7 @@ select[multiple],
 textarea {
   @apply border-white border-0 shadow-md bg-white;
 }
+
+body {
+  @apply bg-gray-100;
+}

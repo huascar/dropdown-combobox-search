@@ -9,7 +9,7 @@ function DropdownBox() {
   const [isOpen, setIsOpen] = useState(false)
   const [filters, setFilters] = useState([])
   const [skipPg, setSkipPg] = useState(0)
-  const [takePg, setTakePg] = useState(5)
+  const [takePg, setTakePg] = useState(20)
   const [isEmail, setIsEmail] = useState(true)
   const [isContact, setIsContact] = useState(true)
   const [isCity, setIsCity] = useState(true)
@@ -30,7 +30,7 @@ function DropdownBox() {
   return (
     <div>
       <div className="font-bold text-xl p-1 text-center">Dropdown ComboBox</div>
-      <div className="flex mb-3 justify-center bg-gray-100">
+      <div className="flex mb-3 justify-center">
         <div>
           <DropDownInput
             setIsOpen={setIsOpen}
