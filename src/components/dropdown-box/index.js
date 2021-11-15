@@ -58,6 +58,8 @@ function DropdownBox() {
                 onClick={() => {
                   setIsOpen(false)
                   setCustomers([])
+                  setFilters([])
+                  setFilterName('')
                 }}
               >
                 <div className="flex">
