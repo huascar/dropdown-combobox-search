@@ -33,7 +33,6 @@ function DropdownBox() {
             type="text"
             className="w-64 rounded-l-lg"
             onChange={(e) => {
-              // console.log(e.target.value)
               e.preventDefault()
               if (e.target.value) {
                 setFilters((prevState) => [

@@ -1,5 +1,5 @@
 const ENDPOINT_URL =
-  process.env.NODE_ENV === 'development'
+  process.env.NODE_ENV === 'production'
     ? `${process.env.REACT_APP_HEROKU_CORS_ANYWHERE}${process.env.REACT_APP_ENDPOINT}`
     : '/'
 
