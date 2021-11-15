@@ -18,13 +18,10 @@ async function fetchingData({skip, take, filters}) {
     group: [],
     all: false
   })
-  console.log(headers)
   try {
     const response = await fetch(ENDPOINT_URL, {headers})
 
     const data = await response.json()
-
-    console.log(data)
 
     return data
   } catch (e) {
