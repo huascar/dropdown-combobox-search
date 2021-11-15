@@ -1,63 +1,46 @@
-import React from 'react'
-import Downshift from 'downshift'
+import React, {useEffect} from 'react'
+
+async function fetchData() {
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_ENDPOINT}?simple=true`,
+      {
+        mode: 'cors',
+        headers: {
+          APIKEY: process.env.REACT_APP_APIKEY,
+          'Data-Operations': JSON.stringify({
+            filter: {
+              logic: 'and',
+              filters: [
+                {field: 'reference_name', operator: 'contains', value: 'super'}
+              ]
+            },
+            skip: 0,
+            take: 10,
+            group: [],
+            all: false
+          })
+        }
+      }
+    )
+
+    const data = await response.json()
+
+    console.log(data)
+  } catch (e) {
+    console.log(e)
+  }
+}
 
 function DropdownBox() {
-  const items = [
-    {value: 'apple'},
-    {value: 'pear'},
-    {value: 'orange'},
-    {value: 'grape'},
-    {value: 'banana'}
-  ]
-
+  // const [filters, setFilters] = useState('')
+  useEffect(() => {
+    fetchData()
+  }, [])
   return (
-    <Downshift
-      onChange={(selection) => alert(`You selected ${selection.value}`)}
-      itemToString={(item) => (item ? item.value : '')}
-    >
-      {({
-        getInputProps,
-        getItemProps,
-        getLabelProps,
-        getMenuProps,
-        isOpen,
-        inputValue,
-        highlightedIndex,
-        selectedItem
-      }) => (
-        <div>
-          <label {...getLabelProps()} className="p-2">
-            Enter a fruit
-          </label>
-          <input {...getInputProps()} type="text" />
-          <ul {...getMenuProps()}>
-            {isOpen
-              ? items
-                  .filter(
-                    (item) => !inputValue || item.value.includes(inputValue)
-                  )
-                  .map((item, index) => (
-                    <li
-                      key={index}
-                      {...getItemProps({
-                        key: item.value,
-                        index,
-                        item,
-                        style: {
-                          backgroundColor:
-                            highlightedIndex === index ? 'lightgray' : 'white',
-                          fontWeight: selectedItem === item ? 'bold' : 'normal'
-                        }
-                      })}
-                    >
-                      {item.value}
-                    </li>
-                  ))
-              : null}
-          </ul>
-        </div>
-      )}
-    </Downshift>
+    <div>
+      Dropdown {process.env.REACT_APP_APIKEY} {process.env.REACT_APP_ENDPOINT}
+    </div>
   )
 }
 
