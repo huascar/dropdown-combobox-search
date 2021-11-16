@@ -37,7 +37,9 @@ function DropdownBox() {
 
   return (
     <div>
-      <div className="font-bold text-xl p-1 text-center">Dropdown ComboBox</div>
+      <div className="font-bold text-xl p-1 text-center mb-3">
+        Dropdown ComboBox
+      </div>
 
       <CustomerModal open={open} setOpen={setOpen} obj={obj} />
       <div className="flex mb-1 justify-center">
