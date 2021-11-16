@@ -23,7 +23,7 @@ textarea {
 }
 
 input[type="text"]:disabled {
-  @apply bg-gray-300 text-gray-500;
+  @apply bg-gray-300 text-gray-600;
 }
 button:disabled {
   @apply bg-green-400 text-green-600;
