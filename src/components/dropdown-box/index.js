@@ -37,7 +37,7 @@ function DropdownBox() {
       <div className="font-bold text-xl p-1 text-center">Dropdown ComboBox</div>
 
       <CustomerModal open={open} setOpen={setOpen} obj={obj} />
-      <div className="flex mb-3 justify-center">
+      <div className="flex mb-1 justify-center">
         <div>
           <DropDownInput
             setIsOpen={setIsOpen}
@@ -61,46 +61,51 @@ function DropdownBox() {
           />
         </div>
       </div>
-      <div>
-        {isOpen && (
-          <CleanBtn
-            setCustomers={setCustomers}
-            setFilterName={setFilterName}
-            setIsOpen={setIsOpen}
-            setFilters={setFilters}
-          />
-        )}
-      </div>
-      <div>
-        {isOpen && (
-          <ChoiceAttributes
-            setIsEmail={setIsEmail}
-            isEmail={isEmail}
-            setIsContact={setIsContact}
-            isContact={isContact}
-            setIsCity={setIsCity}
-            isCity={isCity}
-            setIsCountry={setIsCountry}
-            isCountry={isCountry}
-          />
-        )}
-      </div>
+      {isOpen && (
+        <ChoiceAttributes
+          setIsEmail={setIsEmail}
+          isEmail={isEmail}
+          setIsContact={setIsContact}
+          isContact={isContact}
+          setIsCity={setIsCity}
+          isCity={isCity}
+          setIsCountry={setIsCountry}
+          isCountry={isCountry}
+        />
+      )}
+      {isOpen && (
+        <CleanBtn
+          setCustomers={setCustomers}
+          setFilterName={setFilterName}
+          setIsOpen={setIsOpen}
+          setFilters={setFilters}
+        />
+      )}
 
-      {isOpen &&
-        customers &&
-        customers.length > 0 &&
-        customers.map((client) => (
-          <DetailCustomer
-            key={client.id}
-            client={client}
-            isEmail={isEmail}
-            isContact={isContact}
-            isCity={isCity}
-            isCountry={isCountry}
-            setOpen={setOpen}
-            setObj={setObj}
-          />
-        ))}
+      {isOpen ? (
+        customers && customers.length > 0 ? (
+          <div className="overflow-auto h-96">
+            {customers.map((client) => (
+              <DetailCustomer
+                key={client.id}
+                client={client}
+                isEmail={isEmail}
+                isContact={isContact}
+                isCity={isCity}
+                isCountry={isCountry}
+                setOpen={setOpen}
+                setObj={setObj}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="p-2 bg-red-100 rounded-md text-red-500 text-center uppercase">
+            No results
+          </div>
+        )
+      ) : (
+        ''
+      )}
     </div>
   )
 }

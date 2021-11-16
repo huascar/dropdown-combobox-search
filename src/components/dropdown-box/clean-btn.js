@@ -6,7 +6,7 @@ function CleanBtn({setCustomers, setFilterName, setIsOpen, setFilters}) {
       <div></div>
       <div>
         <button
-          className="m-1 bg-blue-500 py-1 px-3 text-white rounded-md"
+          className="my-1 bg-red-400 py-1 px-3 text-white rounded-md"
           onClick={() => {
             setIsOpen(false)
             setCustomers([])

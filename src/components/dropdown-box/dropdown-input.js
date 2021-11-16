@@ -19,7 +19,7 @@ function DropDownInput({
       value={filterName}
       onChange={(e) => {
         setFilterName(e.target.value)
-        if (e.target.value && e.target.value !== '') {
+        if (e.target.value) {
           setIsOpen(true)
           fetchingData({
             skip: skipPg,
@@ -44,8 +44,11 @@ function DropDownInput({
           setSkipPg(0)
           setTakePg(20)
         } else {
+          console.log('no text', filterName)
           setFilters([])
           setCustomers([])
+          setFilterName(e.target.value)
+          setIsOpen(false)
         }
       }}
     />
