@@ -10,7 +10,7 @@ function DropdownButton({
   return (
     <button
       className={`p-2 ${
-        isOpen ? 'bg-red-400' : 'bg-gray-400'
+        isOpen ? 'bg-red-400' : 'bg-gray-400 hover:bg-green-400'
       } text-white rounded-r-lg shadow-md`}
       onClick={() => {
         customerList()

@@ -10,17 +10,20 @@ function DropDownInput({
   skipPg,
   takePg,
   filterName,
-  setFilterName
+  setFilterName,
+  setIsLoadingData
 }) {
   return (
     <input
       type="text"
-      className="w-64 rounded-l-lg"
+      className="w-64 rounded-l-lg focus:ring-0"
       value={filterName}
+      placeholder="Find your customer"
       onChange={(e) => {
         setFilterName(e.target.value)
         if (e.target.value) {
           setIsOpen(true)
+          setIsLoadingData(true)
           fetchingData({
             skip: skipPg,
             take: takePg,
@@ -32,7 +35,10 @@ function DropDownInput({
               }
             ]
           })
-            .then((data) => setCustomers(data.results))
+            .then((data) => {
+              setIsLoadingData(false)
+              setCustomers(data.results)
+            })
             .catch((e) => console.log(e))
           setFilters([
             {

@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React, {useState} from 'react'
 import fetchingData from '../../utils/fetching-data'
 import CustomerModal from '../modal'
 import ChoiceAttributes from './choice-attributes'
-import CleanBtn from './clean-btn'
 import DetailCustomer from './detail-customer'
 import DropdownButton from './dropdown-button'
 import DropDownInput from './dropdown-input'
@@ -20,11 +18,16 @@ function DropdownBox() {
   const [filterName, setFilterName] = useState('')
   const [open, setOpen] = useState(false)
   const [obj, setObj] = useState()
+  const [isLoadingData, setIsLoadingData] = useState(false)
   function customerList() {
     if (!isOpen) {
       setIsOpen(true)
+      setIsLoadingData(true)
       fetchingData({skip: skipPg, take: takePg, filters})
-        .then((data) => setCustomers(data.results))
+        .then((data) => {
+          setCustomers(data.results)
+          setIsLoadingData(false)
+        })
         .catch((e) => console.log(e))
     } else {
       setIsOpen(false)
@@ -49,6 +52,7 @@ function DropdownBox() {
             takePg={takePg}
             filterName={filterName}
             setFilterName={setFilterName}
+            setIsLoadingData={setIsLoadingData}
           />
         </div>
         <div>
@@ -99,8 +103,12 @@ function DropdownBox() {
               />
             ))}
           </div>
+        ) : isLoadingData ? (
+          <div className="mt-2 p-2 bg-white shadow-md rounded-md text-gray-500 text-center">
+            Loading...
+          </div>
         ) : (
-          <div className="mt-2 p-2 bg-white shadow-md rounded-md text-gray-500 text-center uppercase">
+          <div className="mt-2 p-2 bg-white shadow-md rounded-md text-gray-500 text-center">
             No results
           </div>
         )
