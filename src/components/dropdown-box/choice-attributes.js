@@ -11,7 +11,7 @@ function ChoiceAttributes({
   isCountry
 }) {
   return (
-    <div className="bg-blue-100 rounded-md w-auto mt-2 py-1 cursor-pointer">
+    <div className="bg-blue-100 rounded-md w-auto mt-2 mb-1 py-1 cursor-pointer">
       <div className="flex p-2">
         <div className="m-1">
           <label className="text-sm">

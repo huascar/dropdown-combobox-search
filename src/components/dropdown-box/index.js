@@ -61,7 +61,7 @@ function DropdownBox() {
           />
         </div>
       </div>
-      {isOpen && (
+      {isOpen && customers && customers.length > 0 && (
         <ChoiceAttributes
           setIsEmail={setIsEmail}
           isEmail={isEmail}
@@ -73,14 +73,14 @@ function DropdownBox() {
           isCountry={isCountry}
         />
       )}
-      {isOpen && (
+      {/* {isOpen && customers && customers.length > 0 && (
         <CleanBtn
           setCustomers={setCustomers}
           setFilterName={setFilterName}
           setIsOpen={setIsOpen}
           setFilters={setFilters}
         />
-      )}
+      )} */}
 
       {isOpen ? (
         customers && customers.length > 0 ? (
@@ -100,7 +100,7 @@ function DropdownBox() {
             ))}
           </div>
         ) : (
-          <div className="p-2 bg-red-100 rounded-md text-red-500 text-center uppercase">
+          <div className="mt-2 p-2 bg-white shadow-md rounded-md text-gray-500 text-center uppercase">
             No results
           </div>
         )

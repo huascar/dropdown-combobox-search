@@ -2,7 +2,7 @@ import React from 'react'
 
 function CleanBtn({setCustomers, setFilterName, setIsOpen, setFilters}) {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between pt-1">
       <div></div>
       <div>
         <button
