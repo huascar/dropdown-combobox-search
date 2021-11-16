@@ -42,7 +42,7 @@ function DropDownInput({
             }
           ])
           setSkipPg(0)
-          setTakePg(10)
+          setTakePg(20)
         } else {
           setFilters([])
           setCustomers([])
