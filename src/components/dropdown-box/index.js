@@ -85,7 +85,7 @@ function DropdownBox() {
       {isOpen ? (
         customers && customers.length > 0 ? (
           <div className="overflow-auto h-96">
-            {customers.map((client) => (
+            {customers.map((client, index) => (
               <DetailCustomer
                 key={client.id}
                 client={client}
@@ -95,6 +95,7 @@ function DropdownBox() {
                 isCountry={isCountry}
                 setOpen={setOpen}
                 setObj={setObj}
+                index={index}
               />
             ))}
           </div>

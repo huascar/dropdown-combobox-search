@@ -7,11 +7,14 @@ function DetailCustomer({
   isCity,
   isCountry,
   setOpen,
-  setObj
+  setObj,
+  index
 }) {
   return (
     <div
-      className={`w-auto h-auto bg-white shadow-md border-0 rounded-md my-1 px-3 py-1 hover:bg-gray-50 hover:text-gray-700 cursor-pointer`}
+      className={`${
+        index === 0 ? 'sticky top-0' : ''
+      } w-auto h-auto bg-white shadow-md border-0 rounded-md my-1 px-3 py-1 hover:bg-gray-50 hover:text-gray-700 cursor-pointer`}
       onClick={() => {
         setOpen(true)
         setObj(client)
