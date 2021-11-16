@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useState} from 'react'
 import fetchingData from '../../utils/fetching-data'
+import CustomerModal from '../modal'
 import DetailCustomer from './detail-customer'
 import DropdownButton from './dropdown-button'
 import DropDownInput from './dropdown-input'
@@ -15,7 +16,8 @@ function DropdownBox() {
   const [isCity, setIsCity] = useState(true)
   const [isCountry, setIsCountry] = useState(true)
   const [filterName, setFilterName] = useState('')
-
+  const [open, setOpen] = useState(false)
+  const [obj, setObj] = useState()
   function customerList() {
     if (!isOpen) {
       setIsOpen(true)
@@ -31,6 +33,8 @@ function DropdownBox() {
   return (
     <div>
       <div className="font-bold text-xl p-1 text-center">Dropdown ComboBox</div>
+
+      <CustomerModal open={open} setOpen={setOpen} obj={obj} />
       <div className="flex mb-3 justify-center">
         <div>
           <DropDownInput
@@ -170,6 +174,8 @@ function DropdownBox() {
             isContact={isContact}
             isCity={isCity}
             isCountry={isCountry}
+            setOpen={setOpen}
+            setObj={setObj}
           />
         ))}
     </div>

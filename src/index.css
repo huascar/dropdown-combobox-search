@@ -22,6 +22,12 @@ textarea {
   @apply border-white border-0 shadow-md bg-white;
 }
 
+input[type="text"]:disabled {
+  @apply bg-gray-300 text-gray-500;
+}
+button:disabled {
+  @apply bg-green-400 text-green-600;
+}
 body {
   @apply bg-gray-100;
 }
